@@ -23,7 +23,7 @@ namespace Technical_Task_Enozom.Controllers
             var countries = await _repo.GetCountries();
             return Ok(countries);
         }
-        [HttpGet]
+        [HttpGet("Name")]
         public async Task<IActionResult> GetHoliday(string countryName)
         {
             var holidays = await _repo.GetHolidays(countryName);

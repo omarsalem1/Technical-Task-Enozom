@@ -34,19 +34,24 @@ namespace Technical_Task_Enozom.Controllers
                 foreach (countryjson c in res.result)
                 {
                     Country entry=new Country();
+                    string countryCode = c.Code;
                     entry.Name = c.Name;
                     entry.Code = c.Code;
                     await _corepo.Addcountry(entry);
                     var holidayclient = new HttpClient();
-                    client.BaseAddress = new Uri("https://www.googleapis.com/calendar/v3/calendars/en." + c.Code + "%23holiday%40group.v.calendar.google.com/events?key=");
-                    var responseholiday = await client.GetAsync("AIzaSyBpSZoCr4xUGsNzmAuxVw_WT0Q4hVW9Bos");
-                    responsejson result = JsonConvert.DeserializeObject<responsejson>(await responseholiday.Content.ReadAsStringAsync());
-                    foreach (Holiday h in result.Items)
+                    holidayclient.BaseAddress = new Uri("https://www.googleapis.com/calendar/v3/calendars/en.af%23holiday%40group.v.calendar.google.com/");
+                    var responseholiday = await client.GetAsync("events?key=AIzaSyBpSZoCr4xUGsNzmAuxVw_WT0Q4hVW9Bos");
+                    string holidayResponse = await responseholiday.Content.ReadAsStringAsync();
+                    
+                    responsejson result = JsonConvert.DeserializeObject<responsejson>(holidayResponse);
+                    if (result != null)
+                    {
+                        foreach (Holiday h in result.Items)
                     {
 
                         h.CountryName = entry.Name;
                         await _holirepo.AddHoliday(h);
-                    }
+                    } }
 
 
 
