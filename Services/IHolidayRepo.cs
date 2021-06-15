@@ -6,7 +6,7 @@ using Technical_Task_Enozom.Models;
 
 namespace Technical_Task_Enozom.Services
 {
-    interface IHolidayRepo
+   public interface IHolidayRepo
     {
         void AddHoliday(Holiday holiday);
         Task<bool> DeleteHoliday(int holidayId);

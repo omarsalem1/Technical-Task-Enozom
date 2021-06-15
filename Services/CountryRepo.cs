@@ -15,10 +15,26 @@ namespace Technical_Task_Enozom.Services
             _context = context;
         }
 
-        public async void Addcountry(Country country)
+        public async Task Addcountry(Country country)
         {
-            await _context.Countries.AddAsync(country);
-            await _context.SaveChangesAsync();
+
+            var entry = await _context.Countries.FirstOrDefaultAsync(c =>c.Name ==country.Name);
+            if (entry == null)
+            {
+
+                await _context.Countries.AddAsync(country);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                entry.Code = country.Code;
+                HolidayRepo _holirepo = new HolidayRepo(_context);
+                foreach(Holiday h in country.holidays)
+                {
+                  await  _holirepo.updateholiday(h);
+                }
+
+            }
         }
 
         public async Task<List<Country>> GetCountries()
