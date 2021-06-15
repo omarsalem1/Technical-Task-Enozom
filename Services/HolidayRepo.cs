@@ -15,7 +15,7 @@ namespace Technical_Task_Enozom.Services
             _context = context;
         }
 
-        public async void AddHoliday(Holiday holiday)
+        public async Task AddHoliday(Holiday holiday)
         {
            await  _context.Holidays.AddAsync(holiday);
             await _context.SaveChangesAsync();

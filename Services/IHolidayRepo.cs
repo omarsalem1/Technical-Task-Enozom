@@ -8,7 +8,7 @@ namespace Technical_Task_Enozom.Services
 {
    public interface IHolidayRepo
     {
-        void AddHoliday(Holiday holiday);
+        Task AddHoliday(Holiday holiday);
         Task<bool> DeleteHoliday(int holidayId);
         Task<bool> updateholiday(Holiday holiday);
     }
