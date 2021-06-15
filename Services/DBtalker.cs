@@ -13,8 +13,8 @@ namespace Technical_Task_Enozom.Services
         {
 
         }
-        DbSet<Country> Countries { get; set; }
-        DbSet<Holiday> Holidays { get; set; }
+       public DbSet<Country> Countries { get; set; }
+       public DbSet<Holiday> Holidays { get; set; }
        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Country>()

@@ -29,13 +29,19 @@ namespace Technical_Task_Enozom
         {
 
             services.AddControllers();
-         
-            services.AddDbContext<DBtalker>(db => db.UseSqlServer("server=.; database=Countrys-HoliDays;Trusted_Connection=True;"));
+            
+         //DBcontext
+            services.AddDbContext<DBtalker>
+                (db => db.UseSqlServer( "Server=.;Database=Countrys-HoliDays;Trusted_Connection=True;MultipleActiveResultSets=True"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Technical_Task_Enozom", Version = "v1" });
             });
-           
+            //dep Injection
+            services.AddScoped<ICountryRepo, CountryRepo>();
+            services.AddScoped<IHolidayRepo,HolidayRepo>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
