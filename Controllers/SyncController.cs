@@ -39,7 +39,7 @@ namespace Technical_Task_Enozom.Controllers
                     entry.Code = c.Code;
                     await _corepo.Addcountry(entry);
                     var holidayclient = new HttpClient();
-                    holidayclient.BaseAddress = new Uri("https://www.googleapis.com/calendar/v3/calendars/en.af%23holiday%40group.v.calendar.google.com/");
+                    holidayclient.BaseAddress = new Uri("https://www.googleapis.com/calendar/v3/calendars/en."+countryCode+"%23holiday%40group.v.calendar.google.com/");
                     var responseholiday = await client.GetAsync("events?key=AIzaSyBpSZoCr4xUGsNzmAuxVw_WT0Q4hVW9Bos");
                     string holidayResponse = await responseholiday.Content.ReadAsStringAsync();
                     
