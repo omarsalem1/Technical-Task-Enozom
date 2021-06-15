@@ -27,12 +27,14 @@ namespace Technical_Task_Enozom.Services
             }
             else
             {
+                if (country.holidays != null) {
                 entry.Code = country.Code;
                 HolidayRepo _holirepo = new HolidayRepo(_context);
+
                 foreach(Holiday h in country.holidays)
                 {
                   await  _holirepo.updateholiday(h);
-                }
+                } }
 
             }
         }
